@@ -1,0 +1,168 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<title> Employee database</title>
+	<style>
+		#small_box{
+		display:none;
+		}
+	#h{
+
+	font-size:20px;
+	width: 50%; /* or any other desired width */
+  margin: 0 auto; /* set left and right margin to auto */
+	}
+        #my-element {
+
+            opacity: 1;
+            transition: opacity 10s ease-in-out;
+        }
+        #my-element.fade-out {
+            opacity: 0;
+        }
+
+	.styled-btn {
+	 display: grid;
+  place-items: center;
+
+	 width: 50%; /* or any other desired width */
+
+  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+
+  background-color: white; /* set the background color */
+  border: none; /* remove the border */
+  color: black; /* set the text color */
+  padding: 10px 20px; /* add some padding */
+  text-align: center; /* center the text */
+  text-decoration: none; /* remove underlines */
+  /* display the button as a block element */
+  font-size: 20px; /* set the font size */
+  margin: 5px; /* add some margin */
+  cursor: pointer; /* set the cursor to a pointer */
+  border-radius: 5px; /* add some rounded corners */
+  transition: background-color 0.3s ease; /* add a transition effect */
+}
+div#h{
+float:center;
+}
+.styled-btn:hover {
+  background-color: cyan; /* change the background color on hover */
+}
+
+	.box {
+	 font-size: 20px;
+	  justify-content: center; /* center horizontally */
+  align-items: center; /* center vertically */
+text-align: center;
+	 font color:red;
+	width: 50%; /* or any other desired width */
+  margin: 0 auto; /* set left and right margin to auto */
+	float:center;
+
+  width: auto;
+  height: auto;
+  background: linear-gradient(to bottom right, pink, cyan);
+  border: 2px solid #cccccc;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+		body {
+			height: 100vh;
+
+			background-image: url("{{ url_for('static', filename='employee.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+		}
+		.content {
+			background-color:white;
+			width: 60%;
+			margin: 0 auto;
+			padding: 10px;
+			background-color:white;
+			box-shadow: 0 0 10px rgba(1, 1, 1, 0.2);
+			border-radius: 10px;
+		}
+		#small_box {
+			color:red;
+			width: 300px;
+			height: 10px;
+			background-color:black;
+			border: 1px solid yellow;
+			padding: 10px;
+		}
+		.bb{
+		position: fixed;
+		width:200px;
+		height:50px;
+			bottom: 20px;
+			right: 20px;
+			font-size:20px;
+
+		}
+	</style>
+</head>
+<body>
+
+	<div class="content" style="text-align:center;">
+
+		<!-- your HTML content goes here -->
+		<!-- this content will be extended when scrolled down -->
+<img src="{{ url_for('static', filename='employee.png') }}" style=" width:50px; height:50px;">
+	</div><br><br>
+<div class="box">
+	{{type_login}} Name:&nbsp      {{ name}}
+	<br><br>
+	{{type_login}} Id:        &nbsp  {{id}}
+	<br><br>
+	 Ongoing projects:        &nbsp  {{no_ongoing}}
+	<br><br>
+		 Previous projects:        &nbsp  {{no_prev}}
+	<br><br>
+
+
+
+</div><br><br>
+<form>
+<div id="h">
+<!--	<button class="styled-btn">View previous projects</button><br>-->
+	<button class="styled-btn" formaction="/project_status.html">Projects and status</button><br>
+	<button class="styled-btn" formaction="/update.html">Update project</button><br>
+{% if type_login == 'Admin' %}
+	<button class="styled-btn" formaction="/new_proj.html">Create new project</button><br>
+{% endif %}
+
+	<div id="my-element">
+		<div id="small_box">{{success_message}}</div>
+	</div>
+
+
+</div>
+</form>
+	<form>
+		<button class="bb" formaction="/sign_out" style="color:black;background-color:red;">SIGN OUT</button></form>
+<script>
+const eventSource = new EventSource('/stream');
+eventSource.onmessage = function(event) {
+  const change = JSON.parse(event.data);
+  // TODO: Update MongoDB Compass view with new document
+};
+
+        $(document).ready(function() {
+            setTimeout(function() {
+                $('#my-element').addClass('fade-out');
+            }, 5000);
+        });
+        var element = document.getElementById('small_box');
+if (element.innerHTML.trim().length > 0) {
+  element.style.display = 'block';
+}
+    </script>
+</body>
+</html>

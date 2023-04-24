@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--    <link rel="stylesheet" href="static/style1.css">-->
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function addStep() {
+        // Get the container element
+        var container = document.getElementById("steps-container");
+
+        // Create a new input field element
+        var input = document.createElement("input");
+        input.type = "text";
+        input.name = "step[]";
+
+        // Append the new input field element to the container
+        container.appendChild(input);
+
+        // Get the value of the new input field
+        var value = input.value;
+
+        // Use the value to create more input fields
+        for (var i = 1; i <= value; i++) {
+          var subInput = document.createElement("input");
+          subInput.type = "text";
+          subInput.name = "substep[]";
+          container.appendChild(subInput);
+        }
+      }
+    </script>
+    <style>
+
+  #myButton {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #888888;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+    .button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+}
+
+/* button container */
+.button-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* space out the buttons horizontally */
+  width: 100%; /* adjust width as per your need */
+  margin-bottom: 10px; /* add some space between the buttons */
+}
+
+.button {
+  padding: 10px 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: move;
+  margin: 0 10px;
+  white-space: nowrap;
+  font-size:16px;
+height:auto;
+width:auto;
+}
+
+.strikeout {
+  text-decoration: line-through;
+}
+body {
+  		background-image: url("{{ url_for('static', filename='info.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+}
+#in{
+color:white;
+text-align:left;
+margin:auto;
+width:auto;
+
+}
+#pr{
+background-image: url("{{ url_for('static', filename='best.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+text-align:center;
+font-size:30px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+  color:white;
+
+}
+
+.btn1{
+color:cyan;
+background-color:black;
+   width:auto;
+  height:auto;
+}
+
+.strikeout {
+  text-decoration: line-through;
+}
+.button.strikeout {
+  color: cyan;
+ .button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.left {
+width:auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bb{
+		position: fixed;
+		width:200px;
+		height:50px;
+        bottom: 20px;
+        right: 20px;
+        font-size:20px;
+
+		}
+.button {
+  width:auto;
+  height:auto;
+}
+
+.btn1 {
+   width:auto;
+  height:auto;
+
+}
+#progress {
+  background-color: #f2f2f2;
+  border: none;
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+#progress::-webkit-progress-value {
+  background-color: pink;
+  border-radius: 10px;
+}
+
+#progress::-moz-progress-bar {
+  background-color: yellow;
+  border-radius: 10px;}
+#bar{
+width:100%;
+height:200px;
+}
+
+  #myButton:hover {
+    background-color: #3e8e41;
+  }
+
+
+
+    </style>
+</head>
+<body >
+
+    <div id="in" class="left"><br>
+        <div id="pr"> Project Title: &nbsp{{proj}}</div><br><br>
+
+
+<h2 style="text-align:center; color:black;">Pending tasks:</h2><br>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+
+ <div class="button-container">
+  {% for i in range(steps|length) %}
+  <div class="button-wrapper">
+    <button id="button{{i}}" class="button" draggable="true">{{steps[i]}}</button>&nbsp &nbsp
+    <button id="{{steps[i]}}" data-button-id="{{i}}" class="btn1" style="width:auto;">Mark it as completed</button><br>
+
+  </div>
+     <br><br>
+  {% endfor %}
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+<div id="bar" style="text-align:center;">
+    <h2 style="color:black;"> Project progress:</h2><progress id="progress" value="0" max="100" style="width:30%; height:50px;"> </progress><br><br><br>
+</div>
+
+
+ <form action="/xxx.html" method="post" name="{{proj}}">
+     <button type="submit"  id="myButton" >Save and return to home page</button></form><br>
+
+<!--    <div id="more_steps">-->
+<!--    <form>-->
+<!--           <button onmouseover="addStep()">Add more steps</button>-->
+<!--    <div id="steps-container"></div>-->
+<!--    </form>-->
+<!--</div>-->
+
+<!--    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="160px" height="160px">-->
+<!--         <defs>-->
+<!--            <linearGradient id="GradientColor">-->
+<!--               <stop offset="0%" stop-color="#e91e63" />-->
+<!--               <stop offset="100%" stop-color="#673ab7" />-->
+<!--            </linearGradient>-->
+<!--         </defs>-->
+<!--         <circle cx="80" cy="80" r="70" stroke-linecap="round" />-->
+<!-- </svg>-->
+<!--<progress value="0" max="100" style="background-color: pink;" id="progress"></progress>-->
+
+</body>
+
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+<script>
+
+
+const buttons = document.querySelectorAll('.btn1');
+var finished_steps = {{ finished_steps | tojson }};
+var pending_steps = {{ pending_steps | tojson }};
+var members = {{ members | tojson }};
+var proj = "{{proj}}";
+var id= "{{id}}";
+const progress = document.querySelector('#progress');
+let count = 0;
+const total = {{steps|length}};
+const percentage = ( 100-{{value}} ) / {{tot_steps}};
+let previousProgressValue = {{value}};
+
+// Set the progress value to the previous progress value
+progress.value = previousProgressValue;
+
+buttons.forEach(function(button) {
+  button.addEventListener('click', function() {
+    if (!button.disabled) {
+      // Increase progress
+      count++;
+      let progressValue = percentage;
+
+      // Add new progress value to the previous progress value
+      let newProgressValue = parseInt(previousProgressValue) + progressValue;
+
+      // Set the progress value to the new progress value
+      progress.value = newProgressValue;
+
+      // Update the previous progress value
+      previousProgressValue = newProgressValue;
+
+      button.disabled = true;
+    }
+
+    step = button.id;
+    const buttonId = button.getAttribute('data-button-id');
+    finished_steps.push(step);
+
+    const index = pending_steps.indexOf(step);
+    if (index > -1) { // only splice array when item is found
+      pending_steps.splice(index, 1); // 2nd parameter means remove one item only
+    }
+
+    const targetButton = document.querySelector('#button' + buttonId);
+    targetButton.classList.add('strikeout');
+
+    const dict_values = {id,members,pending_steps, finished_steps, proj, previousProgressValue}; // Pass the JavaScript variables to a dictionary.
+    const s = JSON.stringify(dict_values); // Stringify converts a JavaScript object or value to a JSON string.
+    console.log(s); // Prints the variables to console window, which are in the JSON format.
+
+  });
+});
+
+  const form = document.querySelector('form[name="{{proj}}"]');
+
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+const form = document.querySelector('form[name="{{proj}}"]');
+  const dict_values = {id, members, pending_steps, finished_steps, proj, previousProgressValue};
+  const s = JSON.stringify(dict_values);
+
+  $.ajax({
+    url: "/test",
+    type: "POST",
+    contentType: "application/json",
+    data: s,
+    success: function() {
+      console.log("POST request sent successfully.");
+        form.action = "/xxx.html";
+    form.submit();
+    },
+    error: function() {
+      console.log("Error sending POST request.");
+
+    }
+
+
+  });
+
+  $.ajax({
+    url: "/test",
+    type: "DELETE",
+    contentType: "application/json",
+    data: s,
+    success: function() {
+      console.log("DELETE request sent successfully.");
+        form.action = "/xxx.html";
+    form.submit();
+    },
+    error: function() {
+      console.log("Error sending DELETE request.");
+    }
+
+  });
+
+});
+
+
+
+
+
+
+</script>
+</body>
+</html>

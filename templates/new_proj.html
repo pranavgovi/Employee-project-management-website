@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function createSteps() {
+                          var n = document.getElementById("steps").value;
+                          var c = document.getElementById("xxx");
+                          c.innerHTML = ""; // clear any existing text boxes
+
+                          for (var i = 1; i <= n; i++) {
+                            var inputName = 'step-' + i;
+                            var label = document.createElement("label");
+                            label.setAttribute("for", "step" + i);
+                            label.textContent = "Step " + i + ": ";
+
+                            var input = document.createElement("input");
+                            input.name=inputName
+                            input.setAttribute("type", "text");
+                            input.setAttribute("id", "step" + i);
+
+                            c.appendChild(label);
+                            c.appendChild(input);
+                            c.appendChild(document.createElement("br"));
+  }
+}
+
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+    		background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+    }
+        .form-box {
+        background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  background-color: #f2f2f2; /* set the background color */
+  border: 1px solid yellow; /* add a border */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* add a box shadow */
+  padding: 20px; /* add some padding */
+  margin: 20px; /* add some margin */
+}
+
+form {
+background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  display: flex; /* display the form as a flex container */
+  flex-direction: column; /* align the form elements in a column */
+}
+
+label {
+color:white;
+background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  font-weight: bold; /* make the labels bold */
+  margin-bottom: 10px; /* add some margin */
+}
+
+input[type="text"], input[type="number"], textarea {
+color:white;
+background-color:black;
+  padding: 10px; /* add some padding */
+  border: 1px solid yellow; /* add a border */
+  border-radius: 5px; /* add some rounded corners */
+  margin-bottom: 20px; /* add some margin */
+}
+
+#sub {
+width:auto;
+  background-color: black; /* set the background color */
+  color: white; /* set the text color */
+  border: none; /* remove the border */
+  padding: 10px 20px; /* add some padding */
+  margin-top: 10px; /* add some margin */
+  cursor: pointer; /* set the cursor to a pointer */
+  border-radius: 5px; /* add some rounded corners */
+  transition: background-color 0.3s ease; /* add a transition effect */
+}
+
+input[type="submit"]:hover {
+background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  background-color: black; /* change the background color on hover */
+}
+
+    </style>
+</head>
+<body>
+<div class="form-box">
+  <form action="/employee.html" method="POST" id="myForm" >
+
+    <label for="name">Project title:</label>
+    <input type="text" id="name" name="proj_name"><br>
+
+    <label for="num-inputs">Number of team members:</label>
+<input type="number" name="no_mem" id="num-inputs" min="1" max="10" oninput="createInputs()">
+
+<div id="input-container" name="ids">
+  <!-- text boxes will be added here -->
+
+</div>
+
+      <br>
+      <label for="steps">Number of steps for completion:</label>
+<input type="number" name='no_step' id="steps" min="1" max="10" oninput="createSteps()">
+
+<div id="xxx" name="steps">
+  <!-- text boxes will be added here -->
+
+</div>
+
+
+
+    <br><br><br>
+    <button type="submit" id="sub" name="newproj">Submit</button>
+  </form>
+</div>
+
+
+<script>
+const form = document.querySelector('#myForm');
+
+
+
+function createInputs() {
+
+  var numInputs = document.getElementById('num-inputs').value;
+  var inputContainer = document.getElementById('input-container');
+  inputContainer.innerHTML = ''; // clear any existing text boxes
+
+  for (var i = 1; i <= numInputs; i++) {
+    var inputName = 'input-' + i;
+    var label = document.createElement('label');
+    label.htmlFor = inputName;
+    label.textContent = 'Team member ID ' + i + ':';
+
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.id = inputName;
+    input.name = inputName;
+
+    inputContainer.appendChild(label);
+    inputContainer.appendChild(input);
+    inputContainer.appendChild(document.createElement('br'));
+
+  }
+
+
+}
+
+
+
+</script>
+
+</body>
+</html>

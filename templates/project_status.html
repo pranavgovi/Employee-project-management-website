@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+<style>
+
+.wrapper {
+  display: flex;
+  justify-content: center; /* center the box horizontally */
+  height: 100vh;
+}
+
+    body{
+
+    			background-image: url("{{ url_for('static', filename='best.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+    }
+    .box {
+
+    background-image: url("{{ url_for('static', filename='best.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+  background-color: #f7f7f7;
+  padding: 20px;
+  height:auto;
+  width: 50%; /* set a width for the box */
+  margin: 0 auto; /* center the box horizontally */
+  font-size:20px;
+
+}
+#cc{
+text-align:center;
+
+}
+.button {
+
+font-size:18px;
+  width: 600px;
+  height: auto;
+  border-radius: 20px; /* half the height of the button */
+  background-color: red;
+  color: white;
+  text-align: center;
+  line-height: 40px; /* center the text vertically */
+}
+#boxx {
+  background-color: red;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+
+#boxx h2 {
+  font-size: 18px;
+  color: white;
+  margin: 0;
+  padding: 5px;
+}
+.bb{
+		position: fixed;
+		width:200px;
+		height:50px;
+			bottom: 20px;
+			right: 20px;
+			font-size:20px;
+
+		}
+.bb1{
+		position: fixed;
+		width:200px;
+		height:50px;
+			bottom: 20px;
+			left: 20px;
+			font-size:20px;
+			background-color:red;
+
+		}
+
+.container {
+			background-color:black;
+
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			padding: 20px;
+			margin: 20px;
+			text-align: center;
+		}
+
+		h2 {
+			font-size: 24px;
+			font-weight: bold;
+			color: yellow;
+			margin: 0;
+			padding: 0;
+		}
+		 .buttonn {
+        display: inline-block;
+        background-color: red;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 4px;
+      }
+
+</style>
+
+</head>
+<body>
+<div id="boxx">
+    <h2 id="cc">Project details for ID-{{id}}</h2></div>
+<div class="wrapper">
+<div class="box">
+
+  <h3 style="color:white">Ongoing Projects:</h3>
+        {% if curr_proj|length == 0 %}
+    <div class="container">
+    <h2>No ongoing projects</h2>
+    </div>
+
+{% endif %}
+
+
+
+
+
+    <form action="/info.html" method="POST">
+
+    {% for i in curr_proj %}
+
+    <ol><button  class="button" name="button_value" value="{{ i }},Button {{ i }}" formaction="/info.html">{{i}} &nbsp &nbsp</button></ol>
+
+      {% endfor %}
+    </form>
+    <h3 style="color:cyan">Previous Projects:</h3>
+    {% if prev_proj|length == 0 %}
+    <h2>No finished projects</h2>
+
+
+{% endif %}
+
+
+{% for i in prev_proj %}
+
+    <button class="buttonn">{{ i }}</button>
+
+			{% endfor %}
+<form action="ret.html">
+            <button class="bb1">Return to previous page</button>
+        </form>
+</div></div>
+
+<!--<form action="/employee.html">-->
+
+<!--    <button class="my-button">Previous page</button>-->
+
+<!--</form>-->
+<form>
+    <button class="bb" formaction="/sign_out" style="color:black;background-color:red;">SIGN OUT</button></form>
+</body>
+</html>

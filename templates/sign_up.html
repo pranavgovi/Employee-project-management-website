@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign Up</title>
+	<style>
+	#radio label {
+  display: inline-block;
+  margin-right: 10px;
+}
+	*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+#strong {
+  border: 1px solid yellow;
+  padding: 10px;
+}
+#strong1{
+border: 1px solid yellow;
+  padding: 10px;
+
+}
+
+body {
+background-image: url("{{ url_for('static', filename='best.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+	font-family: sans-serif;
+}
+
+.container {
+		background-color:black;
+	width: 400px;
+	height:auto;
+	margin: 50px auto;
+
+	border-radius: 5px;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+	padding: 20px;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+	color: white;
+	text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: #555;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="checkbox"] {
+	width: 100%;
+	padding: 10px;
+	border-radius: 3px;
+	border: none;
+	background-color: #f2f2f2;
+	box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="password"]:focus {
+	outline: none;
+	box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="checkbox"] {
+	margin-right: 5px;
+}
+
+input[type="submit"] {
+	background-color: white;
+	color: black;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0,0)}
+
+
+#alert {
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #f8d7da; /* red background color */
+  color: #721c24; /* text color */
+  border: 1px solid #f5c6cb; /* border color */
+  border-radius: 4px; /* border radius */
+}
+
+
+
+</style>
+	<script>
+
+
+function showAdminForm() {
+  document.getElementById("admin-form").style.display = "block";
+  document.getElementById("employee-form").style.display = "none";
+}
+
+function showEmployeeForm() {
+  document.getElementById("admin-form").style.display = "none";
+  document.getElementById("employee-form").style.display = "block";
+}
+
+</script>
+
+
+
+
+
+</head>
+<body>
+	<div class="container">
+		<h1>Sign Up</h1>
+		<div id="radio">
+		<label for="user-type">Select user type:</label>
+				<label class="inline-label">	<input type="radio" checked id="employee" name="user-type" value="employee" onclick="showEmployeeForm()">Employee</label>
+<label class="inline-label"><input type="radio" id="admin" name="user-type" value="admin" onclick="showAdminForm()">admin</label>
+
+		</div><br><br>
+		<form action="/index.html" name="signup" id="employee-form">
+			<input type="hidden" name="form_name" value="form2">
+			<div class="form-group">
+				<label for="name">Employee Name</label>
+				<input type="text" placeholder="NAME" id="name" name="name" autocomplete="username" required>
+			</div>
+			<div class="form-group">
+				<label for="id">Employee Id</label>
+				<input type="number" placeholder="ID" id="id" name="id" required>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" placeholder="PASSWORD" id="password" name="password" required autocomplete="new-password">
+			</div>
+			<div>
+				<button onclick="disp_rules()" style="color:red;height:30px;width:150px;text-align:center; ">Password requirements</button>
+			</div>
+			<div id="strong" style="color:white; text-align:center; display:none;">
+				<p>Password should contain:</p>
+
+					<li>Minimum of length 8 characters</li>
+					<li>Atleast one capital letter</li>
+					<li>One special symbol like [@,#,$,*]</li>
+					<li> Atleast one numeric value</li>
+
+			</div>
+
+			<div class="form-group">
+				<label for="confirm_password">Confirm Password</label>
+				<input type="password" id="confirm_password" placeholder="CONFIRM PASSWORD" name="password1" required autocomplete="new-password">
+			</div><br>
+			<div id="alert"style="display:none">{{error}}</div><br>
+
+			<div class="form-group">
+				<input type="submit" value="Sign Up">
+			</div>
+
+		</form>
+
+
+		<form action="/index.html" name="signup" id="admin-form" style="display:none;">
+			<input type="hidden" name="form_name" value="form3">
+			<div class="form-group">
+				<label for="name">Admin Name</label>
+				<input type="text" placeholder="NAME" id="admin_name" name="name" autocomplete="username" required>
+			</div>
+			<div class="form-group">
+				<label for="id">Admin Id</label>
+				<input type="number" placeholder="ID" id="admin_id" name="id" required>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label>
+				<input type="password" placeholder="PASSWORD" id="admin_password" name="password" required autocomplete="new-password">
+			</div>
+			<div>
+				<button onclick="disp1_rules()" style="color:red;height:30px;width:150px;text-align:center; ">Password requirements</button>
+			</div>
+			<div id="strong1" style="color:white; text-align:center; display:none;">
+				<p>Password should contain:</p>
+
+					<li>Minimum of length 8 characters</li>
+					<li>Atleast one capital letter</li>
+					<li>One special symbol like [@,#,$,*]</li>
+					<li> Atleast one numeric value</li>
+
+			</div>
+
+			<div class="form-group">
+				<label for="confirm_password">Confirm Password</label>
+				<input type="password" id="admin_confirm_password" placeholder="CONFIRM PASSWORD" name="password1" required autocomplete="new-password">
+			</div><br>
+			<div id="admin_alert"style="display:none">{{error}}</div><br>
+
+			<div class="form-group">
+				<input type="submit" value="Sign Up">
+			</div>
+
+		</form>
+
+
+	</div>
+</body>
+<script>
+
+function disp_rules () {
+var x=document.getElementById('strong');
+
+ x.style.display = "block";
+}
+function disp1_rules () {
+var y=document.getElementById('strong1');
+
+ y.style.display = "block";
+}
+
+
+
+
+
+
+	x="{{ error}}"
+if (x.length!=0) {
+	var employeeRadio = document.getElementById("employee");
+  var adminRadio = document.getElementById("admin");
+
+
+   if (employeeRadio.checked){
+   var alertDiv = document.getElementById("alert");
+alertDiv.style.display = "block";
+setTimeout(function() {
+    alertDiv.style.display = "none";
+  }, 5000);
+
+  } else {
+    var alertDiv1 = document.getElementById("admin_alert");
+alertDiv1.style.display = "block";
+setTimeout(function() {
+    alertDiv1.style.display = "none";
+  }, 5000);
+
+
+}}
+
+</script>
+
+</html>

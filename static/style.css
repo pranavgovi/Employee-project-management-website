@@ -1,0 +1,73 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: linear-gradient(to right, #348f50, #56b4d3);
+	font-family: sans-serif;
+}
+
+.container {
+	width: 400px;
+	margin: 50px auto;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+	padding: 20px;
+}
+
+h1 {
+	text-align: center;
+	margin-bottom: 20px;
+	color: #fff;
+	text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+label {
+	display: block;
+	margin-bottom: 5px;
+	font-weight: bold;
+	color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="checkbox"] {
+	width: 100%;
+	padding: 10px;
+	border-radius: 3px;
+	border: none;
+	background-color: #f2f2f2;
+	box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+	outline: none;
+	box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input[type="checkbox"] {
+	margin-right: 5px;
+}
+
+input[type="submit"] {
+	background-color: #56b4d3;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bold;
+	padding: 10px;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0,0)}

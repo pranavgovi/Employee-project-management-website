@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body{
+    		background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+    }
+        .form-box {
+        background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  background-color: #f2f2f2; /* set the background color */
+  border: 1px solid yellow; /* add a border */
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* add a box shadow */
+  padding: 20px; /* add some padding */
+  margin: 20px; /* add some margin */
+}
+
+form {
+background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  display: flex; /* display the form as a flex container */
+  flex-direction: column; /* align the form elements in a column */
+}
+
+label {
+
+color:white;
+background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  font-weight: bold; /* make the labels bold */
+  margin-bottom: 10px; /* add some margin */
+}
+
+input[type="text"], input[type="number"], textarea {
+color:white;
+background-color:black;
+  padding: 10px; /* add some padding */
+  border: 1px solid yellow; /* add a border */
+  border-radius: 5px; /* add some rounded corners */
+  margin-bottom: 20px; /* add some margin */
+}
+
+#sub {
+width:auto;
+  background-color: black; /* set the background color */
+  color: white; /* set the text color */
+  border: none; /* remove the border */
+  padding: 10px 20px; /* add some padding */
+  margin-top: 10px; /* add some margin */
+  cursor: pointer; /* set the cursor to a pointer */
+  border-radius: 5px; /* add some rounded corners */
+  transition: background-color 0.3s ease; /* add a transition effect */
+}
+
+input[type="submit"]:hover {
+background-image: url("{{ url_for('static', filename='new_proj.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+  background-color: black; /* change the background color on hover */
+}
+#pr{
+background-image: url("{{ url_for('static', filename='best.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+text-align:center;
+font-size:30px;
+  border: 1px solid black;
+  padding: 10px;
+  border-radius: 5px;
+  color:white;
+
+}
+.box {
+  border: 1px solid cyan;
+
+
+  width: 200px;
+  height:50px;
+  font-color:white;
+}
+.buttonn {
+        display: inline-block;
+        background-color: green;
+        color: white;
+        padding: 8px 16px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        margin: 4px 2px;
+        border-radius: 4px;
+      }
+
+.box {
+  overflow: hidden;
+}
+
+.box h2 {
+  float: left;
+  width: 150px;
+}
+
+.box p {
+  float: left;
+  margin-left: 20px;
+}
+label.my-label {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.checkbox {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px; /* adjust as needed */
+  transform:scale(1.5)
+}
+    </style>
+</head>
+<body>
+<div id="pr"> Project Title: &nbsp{{proj}}</div><br><br>
+
+<div class="form-box">
+  <form action="/employee.html" method="POST" id="myForm">
+
+
+<div class="box">
+    <h2 style="text-align:center; color:white; font-size:17px;">Addition of steps</h2></div><br>
+<input type="hidden" name="my_value" value="{{proj}}">
+<input type="number" name="no_mem" id="num-inputs" min="1" max="10" oninput="createInputs()" placeholder="Enter number of steps to be added"><br>
+
+<div id="input-container" name="ids">
+  <!-- text boxes will be added here -->
+
+</div>
+      <div class="box">
+          <h2 style="text-align:center; color:white; font-size:17px;">Deletion of steps</h2></div><br>
+
+      {% for i in pending_steps %}
+    <label  class="my-label" for="{{ i }}">
+         <input type="checkbox" class="checkbox" id="{{ i }}" name="steps" value="{{ i }}">
+        {{ i }}
+    </label>
+
+
+			{% endfor %}
+
+
+
+
+
+
+    <br><br>
+    <button type="submit" name="update" id="sub">Update</button>
+  </form>
+
+
+</div>
+
+
+
+
+</body>
+
+<script>
+const form = document.querySelector('#myForm');
+
+
+
+function createInputs() {
+
+  var numInputs = document.getElementById('num-inputs').value;
+  var inputContainer = document.getElementById('input-container');
+  inputContainer.innerHTML = ''; // clear any existing text boxes
+
+  for (var i = 1; i <= numInputs; i++) {
+    var inputName = 'input-' + i;
+    var label = document.createElement('label');
+    label.htmlFor = inputName;
+    label.textContent =  i +' '+'st'+ ' '+ 'step' +':';
+
+    var input = document.createElement('input');
+    input.type = 'text';
+    input.id = inputName;
+    input.name = inputName;
+
+    inputContainer.appendChild(label);
+    inputContainer.appendChild(input);
+    inputContainer.appendChild(document.createElement('br'));
+
+  }
+
+
+}
+
+
+
+</script>
+
+</body>
+</html>

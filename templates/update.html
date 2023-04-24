@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update projects</title>
+    <style>
+        body{
+        	background-image: url("{{ url_for('static', filename='update.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+        }
+        #boxx {
+  background-color: black;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+}
+#boxx h2 {
+  font-size: 18px;
+  color: white;
+  margin: 0;
+  padding: 5px;
+}
+.wrapper {
+  display: flex;
+  justify-content: center; /* center the box horizontally */
+  height: 100vh;
+}
+.button {
+
+font-size:18px;
+  width: 300px;
+  height: auto;
+  border-radius: 20px; /* half the height of the button */
+  background-color: white;
+  color: black;
+  font-size:20px;
+  text-align: center;
+  line-height: 40px; /* center the text vertically */
+}
+
+.box {
+
+    background-image: url("{{ url_for('static', filename='update.jpg') }}");
+			background-repeat: no-repeat;
+			background-size: cover;
+			 background-attachment: fixed;
+
+  background-color: #f7f7f7;
+  padding: 20px;
+  height:auto;
+  width: 50%; /* set a width for the box */
+  margin: 0 auto; /* center the box horizontally */
+  font-size:20px;
+
+}
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="box">
+<div id="boxx">
+    <h2 style="text-align:center;">Update project details for ID:{{id}}</h2></div><br><br><br>
+ <form action="/update_info.html" method="POST">
+
+    {% for i in curr_proj %}
+
+    <ol><button  class="button" name="button_value" value="{{ i }},Button {{ i }}" formaction="/update_info.html">{{i}} &nbsp &nbsp</button></ol>
+
+      {% endfor %}
+ </form>
+    </div>
+</div>
+</body>
+</html>

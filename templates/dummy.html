@@ -1,0 +1,14 @@
+name = ''
+            total = mycol.find()
+            for i in total:
+                if id == i['id']:
+
+                    ss = i['admin']
+                    if (ss == 0):
+                        type_login = 'Employee'
+                    else:
+                        type_login = 'Admin'
+                    if i['employee_name']:
+                        name = i['employee_name']
+
+                return render_template("employee.html", id=id, key=key, name=name, type_login=type_login)
